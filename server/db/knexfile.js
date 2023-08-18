@@ -30,13 +30,21 @@ module.exports = {
   },
 
   production: {
-    client: 'sqlite3',
-    useNullAsDefault: true,
+    client: 'postgres',
     connection: {
-      filename: '/app/storage/prod.sqlite3',
+      connectionString: process.env.DATABASE_URL,
     },
-    pool: {
-      afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
-    },
+    useNullAsDefault: true,
   },
+
+  // production: {
+  //   client: 'sqlite3',
+  //   useNullAsDefault: true,
+  //   connection: {
+  //     filename: '/app/storage/prod.sqlite3',
+  //   },
+  //   pool: {
+  //     afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
+  //   },
+  // },
 }
